@@ -208,9 +208,9 @@
                     </a>
                   </li>
                   <li class="dropdown-item py-2">
-                    <a href="javascript:;" class="text-body ms-0">
-                      <i class="me-2 icon-md" data-feather="edit"></i>
-                      <span>Edit Profile</span>
+                    <a href="{{ route('admin.change.password') }}" class="text-body ms-0">
+                      <i class="me-2 icon-md" data-feather="edit"></i>                  
+                      <span>Change Password</span>
                     </a>
                   </li>
                   <li class="dropdown-item py-2">
@@ -219,12 +219,7 @@
                       <span>Switch User</span>
                     </a>
                   </li>
-                   <li class="dropdown-item py-2">
-                    <a href="{{ route('admin.change.password') }}" class="text-body ms-0">
-                      <i class="me-2 icon-md" data-feather="log-out"></i>
-                      <span>Change Password</span>
-                    </a>
-                  </li>
+                  
                   <li class="dropdown-item py-2">
                     <a href="{{ route('admin.logout') }}" class="text-body ms-0">
                       <i class="me-2 icon-md" data-feather="log-out"></i>

@@ -3,7 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\UserController;
+use App\Models\PropertyType;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
 
@@ -44,8 +46,6 @@ Route::middleware('auth','role:admin')->group(function () {
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 
 
-
-
 });
 
 // admin group midlleware
@@ -57,7 +57,26 @@ Route::middleware('auth','role:agent')->group(function () {
   Route::get('admin/login', [AdminController::class, 'AdminLogin'])
                 ->name('admin.login');
 
+//property all route
+Route::middleware('auth','role:admin')->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+
+    Route::controller(PropertyTypeController::class)->group(function(){
+        Route::get('/all/type','AllType')->name('all.type');
+        Route::get('/add/type','AddType')->name('add.type');
+        Route::post('/store/type','storeType')->name('store.type');
+        Route::get('/edit/type/{id}','editType')->name('edit.type');
+        Route::post('/delete/type','deleteType')->name('delete.type');
+        Route::post('/update/type','updateType')->name('update.type');
 
 
+
+
+
+    });
+
+
+});
+    
 
 // Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
