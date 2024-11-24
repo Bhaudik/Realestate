@@ -1,13 +1,5 @@
 <!DOCTYPE html>
-<!--
-Template Name: NobleUI - HTML Bootstrap 5 Admin Dashboard Template
-Author: NobleUI
-Website: https://www.nobleui.com
-Portfolio: https://themeforest.net/user/nobleui/portfolio
-Contact: nobleui123@gmail.com
-Purchase: https://1.envato.market/nobleui_admin
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
--->
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -17,7 +9,7 @@ License: For each use you must have a valid license purchased only from above li
 	<meta name="author" content="NobleUI">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-	<title>NobleUI - HTML Bootstrap 5 Admin Dashboard Template</title>
+	<title>Realestate - Admin Template</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,22 +18,29 @@ License: For each use you must have a valid license purchased only from above li
   <!-- End fonts -->
 
 	<!-- core:css -->
-	<link rel="stylesheet" href="../../../assets/vendors/core/core.css">
+	<link rel="stylesheet" href="{{ asset('backend/assets/vendors/core/core.css')}}">
 	<!-- endinject -->
 
 	<!-- Plugin css for this page -->
 	<!-- End plugin css for this page -->
 
 	<!-- inject:css -->
-	<link rel="stylesheet" href="../../../assets/fonts/feather-font/css/iconfont.css">
-	<link rel="stylesheet" href="../../../assets/vendors/flag-icon-css/css/flag-icon.min.css">
+	<link rel="stylesheet" href="{{ asset('backend/assets/fonts/feather-font/css/iconfont.css')}}">
+	<link rel="stylesheet" href="{{ asset('backend/assets/vendors/flag-icon-css/css/flag-icon.min.css')}}">
 	<!-- endinject -->
 
   <!-- Layout styles -->  
-	<link rel="stylesheet" href="../../../assets/css/demo2/style.css">
+	<link rel="stylesheet" href="{{ asset('backend/assets/css/demo2/style.css')}}">
   <!-- End layout styles -->
 
-  <link rel="shortcut icon" href="../../../assets/images/favicon.png" />
+  <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png')}}" />
+  <style style="text/css">
+    .authlogin-side-wrapper{
+        width: 100%;
+        height: 100%;
+        background-image: url({{ asset('upload/login.png')}})
+    }
+  </style>
 </head>
 <body>
 	<div class="main-wrapper">
@@ -53,26 +52,23 @@ License: For each use you must have a valid license purchased only from above li
 						<div class="card">
 							<div class="row">
                 <div class="col-md-4 pe-md-0">
-                  <div class="auth-side-wrapper">
+                  <div class="authlogin-side-wrapper">
 
                   </div>
                 </div>
                 <div class="col-md-8 ps-md-0">
                   <div class="auth-form-wrapper px-4 py-5">
-                    <a href="#" class="noble-ui-logo logo-light d-block mb-2">Noble<span>UI</span></a>
-                    <h5 class="text-muted fw-normal mb-4">Create a free account.</h5>
-                    <form class="forms-sample">
+                    <a href="#" class="noble-ui-logo logo-light d-block mb-2">Admin<span>New UI</span></a>
+                    <h5 class="text-muted fw-normal mb-4">Welcome back! Log in to your account.</h5>
+                    <form class="forms-sample" method="POST" action="{{ route('login') }}">
+                        @csrf
                       <div class="mb-3">
-                        <label for="exampleInputUsername1" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="Username" placeholder="Username">
-                      </div>
-                      <div class="mb-3">
-                        <label for="userEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="userEmail" placeholder="Email">
+                        <label for="login" class="form-label">Email/Name/Phone</label>
+                        <input type="text" class="form-control" id="login" name="login" placeholder="Email">
                       </div>
                       <div class="mb-3">
                         <label for="userPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="userPassword" autocomplete="current-password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" autocomplete="current-password" placeholder="Password">
                       </div>
                       <div class="form-check mb-3">
                         <input type="checkbox" class="form-check-input" id="authCheck">
@@ -81,13 +77,11 @@ License: For each use you must have a valid license purchased only from above li
                         </label>
                       </div>
                       <div>
-                        <a href="../../dashboard.html" class="btn btn-primary text-white me-2 mb-2 mb-md-0">Sign up</a>
-                        <button type="button" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
-                          <i class="btn-icon-prepend" data-feather="twitter"></i>
-                          Sign up with twitter
+                        <button type="submit" class="btn btn-outline-primary btn-icon-text mb-2 mb-md-0">
+                          Login
                         </button>
                       </div>
-                      <a href="login.html" class="d-block mt-3 text-muted">Already a user? Sign in</a>
+                      <a href="register.html" class="d-block mt-3 text-muted">Not a user? Sign up</a>
                     </form>
                   </div>
                 </div>
@@ -101,15 +95,15 @@ License: For each use you must have a valid license purchased only from above li
 	</div>
 
 	<!-- core:js -->
-	<script src="../../../assets/vendors/core/core.js"></script>
+	<script src="{{ asset('backend/assets/vendors/core/core.js')}}"></script>
 	<!-- endinject -->
 
 	<!-- Plugin js for this page -->
 	<!-- End plugin js for this page -->
 
 	<!-- inject:js -->
-	<script src="../../../assets/vendors/feather-icons/feather.min.js"></script>
-	<script src="../../../assets/js/template.js"></script>
+	<script src="{{ asset('backend/assets/vendors/feather-icons/feather.min.js')}}"></script>
+	<script src="{{ asset('backend/assets/js/template.js')}}"></script>
 	<!-- endinject -->
 
 	<!-- Custom js for this page -->
