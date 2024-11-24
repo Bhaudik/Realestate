@@ -48,14 +48,15 @@
 
 								<h6 class="card-title">Basic Form</h6>
 
-								<form class="forms-sample">
-									<div class="mb-3">
+								<form class="forms-sample" method="POST" action="{{route('admin.profile.store')}}" enctype="multipart/form-data">
+									@csrf
+                                    <div class="mb-3">
 										<label for="username" class="form-label">Username</label>
-										<input type="text" class="form-control" id="name" value="{{$adminUser->username}}" autocomplete="off" placeholder="name">
+										<input type="text" class="form-control" id="username" name="username" value="{{$adminUser->username}}" autocomplete="off" placeholder="username">
 									</div>
                                     <div class="mb-3">
 										<label for="name" class="form-label">Name</label>
-										<input type="text" class="form-control" id="name" value="{{$adminUser->name}}" autocomplete="off" placeholder="name">
+										<input type="text" class="form-control" id="name" name="name" value="{{$adminUser->name}}" autocomplete="off" placeholder="name">
 									</div>
 									<div class="mb-3">
 										<label for="phone" class="form-label">Phone</label>
@@ -63,7 +64,7 @@
 									</div>
                                     <div class="mb-3">
 										<label for="address" class="form-label">Address</label>
-										<input type="text" class="form-control" id="address" value="{{$adminUser->address}}" autocomplete="off" placeholder="address">
+										<input type="text" class="form-control" id="address" name="address" value="{{$adminUser->address}}" autocomplete="off" placeholder="address">
 									</div>
                                     <div class="mb-3">
 										<label for="exampleInputEmail1" class="form-label">Email address</label>
