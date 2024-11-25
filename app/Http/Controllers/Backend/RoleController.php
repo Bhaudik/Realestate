@@ -219,6 +219,6 @@ class RoleController extends Controller
         $roles = Role::all();
         $permission = Permission::all();
 
-        return view('backend.pages.permission.all_roles_permission', compact('roles', 'permission'));
+        return view('backend.pages.roles.all_roles_permission', compact('roles', 'permission'));
     }
 }
