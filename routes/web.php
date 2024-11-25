@@ -91,6 +91,14 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::get('/edit/permission/{id}','editPermission')->name('edit.permission');
         Route::get('/delete/permission/{id}','DeletePermission')->name('delete.permission');
         Route::post('/update/permission','updatePermission')->name('update.permission');
+
+          // Export route
+        Route::get('/export/permissions', 'exportPermissions')->name('export.permissions');
+        
+        // Import route
+        Route::get('/import/permissions', 'importPermissionsView')->name('import.permissions.view');
+        Route::post('/import/permissions', 'importPermissions')->name('import.permissions');
+
     });
 
 });

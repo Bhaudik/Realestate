@@ -1,56 +1,54 @@
+<!-- resources/views/admin/all_permission.blade.php -->
+
 @extends('admin.admin_dashboard')
 @section('admin')
 
+<div class="page-content">
+    <nav class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <a href="{{ route('add.permission') }}" class="btn btn-inverse-info" rel="noopener noreferrer">Add Permission</a>
+            <!-- Export Button -->
+            <a href="{{ route('export.permissions') }}" class="btn btn-success" rel="noopener noreferrer">Export</a>
+            <!-- Import Button -->
+            <a href="{{ route('import.permissions.view') }}" class="btn btn-primary" rel="noopener noreferrer">Import</a>
+        </ol>
+    </nav>
 
-
-	<div class="page-content">
-
-       
-        <div class="row profile-body">
- 
-<div class="col-md-8 col-xl-8 middle-wrapper">
-            <div class="row">
-              <div class="card">
-              <div class="card-body">
-
-								<h6 class="card-title">Add Permission Type</h6>
-
-								<form class="forms-sample" method="POST" action="{{route('store.permission')}}" enctype="multipart/form-data">
-									@csrf
-
-                                      <div class="mb-3">
-										<label for="name" class="form-label">Permission name</label>
-										<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" autocomplete="off" placeholder="Property Type Name">
-                                        @error('name')
-                                            <span class="text-danger">{{ $message }}</span>                                            
-                                        @enderror
-									</div>
-
-                                     <div class="mb-3">
-										<label for="type_icon" class="form-label">Group name</label>
-										<select class="form-select" name="group_name" id="exampleFormControlSelect1">
-											<option selected disabled>Select Group</option>
-											<option value="type">property type</option>
-											<option value="amenities">Amenities</option>											
-										</select>
-                                        @error('type_icon')
-                                            <span class="text-danger">{{ $message }}</span>                                            
-                                        @enderror
-									</div>
-
-
-
-                                     
-
-                                    <button type="submit" class="btn btn-primary me-2">Submit</button>
-								</form>
-
-              </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-title">Permission All</h6>
+                    <div class="table-responsive">
+                        <table id="dataTableExample" class="table">
+                            <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Permission name</th>
+                                    <th>Group name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($permission as $key => $item)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->group_name }}</td>
+                                        <td>
+                                            <a href="{{ route('edit.permission', $item->id) }}" class="btn btn-inverse-warning">Edit</a>
+                                            <a href="{{ route('delete.permission', $item->id) }}" class="btn btn-inverse-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            </div>
-          </div>
-
         </div>
     </div>
+
+</div>
 
 @endsection
