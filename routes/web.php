@@ -59,24 +59,27 @@ Route::middleware('auth','role:agent')->group(function () {
 
 //property all route
 Route::middleware('auth','role:admin')->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-
     Route::controller(PropertyTypeController::class)->group(function(){
         Route::get('/all/type','AllType')->name('all.type');
         Route::get('/add/type','AddType')->name('add.type');
         Route::post('/store/type','storeType')->name('store.type');
         Route::get('/edit/type/{id}','editType')->name('edit.type');
-        Route::post('/delete/type','deleteType')->name('delete.type');
+        Route::get('/delete/type/{id}','deleteType')->name('delete.type');
         Route::post('/update/type','updateType')->name('update.type');
-
-
-
-
-
     });
-
-
 });
     
+//Amenity
+Route::middleware('auth','role:admin')->group(function () {
+   
+    Route::controller(PropertyTypeController::class)->group(function(){
+        Route::get('/all/amenities','AllAmenities')->name('all.amenities');
+        Route::get('/add/amenities','AddAmenities')->name('add.amenities');
+        Route::post('/store/amenities','storeAmenities')->name('store.amenities');
+        Route::get('/edit/amenities/{id}','editAmenities')->name('edit.amenities');
+        Route::get('/delete/amenities/{id}','deleteAmenities')->name('delete.amenities');
+        Route::post('/update/amenities','updateAmenities')->name('update.amenities');
+    });
+});
 
 // Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');

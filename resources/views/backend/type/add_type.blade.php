@@ -15,11 +15,10 @@
 
 								<h6 class="card-title">Add Propperty Type</h6>
 
-								<form class="forms-sample" method="POST" action="{{route('update.type')}}" enctype="multipart/form-data">
+								<form class="forms-sample" method="POST" action="{{route('store.type')}}" enctype="multipart/form-data">
 									@csrf
 
-                                    <input type="hidden" name="id" value="{{ $type->id}}">
-                                    <div class="mb-3">
+                                      <div class="mb-3">
 										<label for="type_name" class="form-label">Type name</label>
 										<input type="text" class="form-control @error('type_name') is-invalid @enderror" id="type_name" name="type_name" autocomplete="off" placeholder="Property Type Name">
                                         @error('type_name')

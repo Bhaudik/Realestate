@@ -17,6 +17,8 @@
 
 								<form class="forms-sample" method="POST" action="{{route('update.type')}}" enctype="multipart/form-data">
 									@csrf
+                                      <input type="hidden" name="id" value="{{ $type->id}}">
+                                
                                     <div class="mb-3">
 										<label for="type_name" class="form-label">Type name</label>
 										<input type="text" class="form-control @error('type_name') is-invalid @enderror" id="type_name" name="type_name" value="{{$type->type_name}}" autocomplete="off" placeholder="Property Type Name">
@@ -31,11 +33,7 @@
                                         @error('type_icon')
                                             <span class="text-danger">{{ $message }}</span>                                            
                                         @enderror
-									</div>
-
-
-
-                                     
+									</div>                                   
 
                                     <button type="submit" class="btn btn-primary me-2">Submit</button>
 								</form>
