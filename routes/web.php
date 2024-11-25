@@ -110,6 +110,8 @@ Route::middleware('auth', 'role:admin')->group(function () {
         // add role permistion 
 
         Route::get('/add/roles/permission', 'AddRolesPermission')->name('add.roles.permission');
+        Route::post('/rope/permission/store', 'RolePermissionStore')->name('roles.permission.store');
+        Route::get('all/role/permission', 'allRolePermission')->name('all.role.permission');
     });
 });
 

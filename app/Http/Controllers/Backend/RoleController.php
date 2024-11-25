@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+// use Illuminate\Support\Facades\DB;
 use DB;
 
 class RoleController extends Controller
@@ -190,5 +191,34 @@ class RoleController extends Controller
         $permission = Permission::all();
         $permission_group = User::getPermissionGroup();
         return view('backend.pages.rolesetup.add_roles_permission', compact('roles', 'permission', 'permission_group'));
+    }
+
+
+    public function RolePermissionStore(Request $request)
+    {
+
+        // dd($request->all());
+        $data = array();
+        $permissions = $request->permissions;
+
+        foreach ($permissions as $key => $value) {
+            $data['role_id'] = $request->role_id;
+            $data['permission_id'] = $value;
+
+            DB::table('role_has_permissions')->insert($data);
+        }
+        $notification = array(
+            'message' => 'Role Premission Added Successfully',
+            'alter-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
+
+    public function allRolePermission()
+    {
+        $roles = Role::all();
+        $permission = Permission::all();
+
+        return view('backend.pages.permission.all_roles_permission', compact('roles', 'permission'));
     }
 }

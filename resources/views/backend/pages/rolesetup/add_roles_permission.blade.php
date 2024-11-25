@@ -1,8 +1,14 @@
 @extends('admin.admin_dashboard')
 @section('admin')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        .form-check-label {
+            text-transform: capitalize;
+        }
+    </style>
     <div class="page-content">
-
-
         <div class="row profile-body">
 
             <div class="col-md-8 col-xl-8 middle-wrapper">
@@ -12,16 +18,16 @@
 
                             <h6 class="card-title">Add Roles and permission</h6>
 
-                            <form class="forms-sample" method="POST" action="{{ route('store.roles') }}"
+                            <form class="forms-sample" method="POST" action="{{ route('roles.permission.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="mb-3">
                                     <label for="type_icon" class="form-label">Group name</label>
-                                    <select class="form-select" name="group_name" id="exampleFormControlSelect1">
+                                    <select class="form-select" name="role_id" id="exampleFormControlSelect1">
                                         <option selected disabled>Select Group</option>
                                         @foreach ($roles as $role)
-                                            <option value="amenities">{{ $role->name }}</option>
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('type_icon')
@@ -30,8 +36,8 @@
                                 </div>
                                 <div class="mb-4">
                                     <div class="form-check mb-2">
-                                        <input type="checkbox" class="form-check-input" id="checkDefault">
-                                        <label class="form-check-label" for="checkDefault">
+                                        <input type="checkbox" class="form-check-input" id="checkDefaultmain">
+                                        <label class="form-check-label" for="checkDefaultmain">
                                             All Prmissions
                                         </label>
                                     </div>
@@ -62,7 +68,7 @@
                                                     <div class="form-check mb-2">
                                                         <input type="checkbox" class="form-check-input"
                                                             id="checkDefault{{ $permission->id }}"
-                                                            value="{{ $permission->name }}" name="permission[]">
+                                                            value="{{ $permission->id }}" name="permissions[]">
                                                         <label class="form-check-label"
                                                             for="checkDefault{{ $permission->id }}">
                                                             {{ $permission->name }}
@@ -84,4 +90,13 @@
 
         </div>
     </div>
+    <script type="text/javascript">
+        $('#checkDefaultmain').click(function() {
+            if ($(this).is(':checked')) {
+                $('input[type = checkbox]').prop('checked', true)
+            } else {
+                $('input[type = checkbox]').prop('checked', false)
+            }
+        });
+    </script>
 @endsection
