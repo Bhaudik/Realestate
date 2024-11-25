@@ -29,7 +29,7 @@
                 <div class="collapse" id="Property">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{route('all.type')}}" class="nav-link">All Type</a>
+                            <a href="{{ route('all.type') }}" class="nav-link">All Type</a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/email/read.html" class="nav-link">Add Type</a>
@@ -50,7 +50,7 @@
                 <div class="collapse" id="amenities">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{route('all.amenities')}}" class="nav-link">All Amenities</a>
+                            <a href="{{ route('all.amenities') }}" class="nav-link">All Amenities</a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/email/read.html" class="nav-link">Add Amenities</a>
@@ -115,16 +115,16 @@
 
             <li class="nav-item nav-category">Role & Permission</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#Permission" role="button" aria-expanded="false"
-                    aria-controls="advancedUI">
+                <a class="nav-link" data-bs-toggle="collapse" href="#Permission" role="button"
+                    aria-expanded="false" aria-controls="advancedUI">
                     <i class="link-icon" data-feather="anchor"></i>
                     <span class="link-title">Role & Permission</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="advancedUI">
+                <div class="collapse" id="Permission">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{route('all.permission')}}" class="nav-link">Role & Permission</a>
+                            <a href="{{ route('all.permission') }}" class="nav-link">Role & Permission</a>
                         </li>
                         <li class="nav-item">
                             <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
@@ -133,8 +133,8 @@
                     </ul>
                 </div>
             </li>
-{{-- roles --}}
-  <li class="nav-item nav-category">Roles</li>
+            {{-- roles --}}
+            <li class="nav-item nav-category">Roles</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#Roles" role="button" aria-expanded="false"
                     aria-controls="advancedUI">
@@ -145,10 +145,10 @@
                 <div class="collapse" id="Roles">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{route('all.roles')}}" class="nav-link">Role & Roles</a>
+                            <a href="{{ route('all.roles') }}" class="nav-link">Role & Roles</a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
+                            <a href="{{ route('add.roles.permission') }}" class="nav-link">Role in Permission</a>
                         </li>
 
                     </ul>

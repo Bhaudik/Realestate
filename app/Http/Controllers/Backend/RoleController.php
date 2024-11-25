@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Backend;
 use App\Exports\PermissionExport;
 use App\Http\Controllers\Controller;
 use App\Imports\PermissionImport;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use DB;
 
 class RoleController extends Controller
 {
@@ -177,5 +178,17 @@ class RoleController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
+    }
+
+    /**
+     * add all role and pemistion 
+     * 
+     */
+    public function AddRolesPermission()
+    {
+        $roles = Role::all();
+        $permission = Permission::all();
+        $permission_group = User::getPermissionGroup();
+        return view('backend.pages.rolesetup.add_roles_permission', compact('roles', 'permission', 'permission_group'));
     }
 }

@@ -96,11 +96,9 @@ Route::middleware('auth', 'role:admin')->group(function () {
         // Import route
         Route::get('/import/permissions', 'importPermissionsView')->name('import.permissions.view');
         Route::post('/import/permissions', 'importPermissions')->name('import.permissions');
-    });
 
-    // All ROles Route
+        // All ROles Route
 
-    Route::controller(RoleController::class)->group(function () {
         Route::get('/all/roles', 'AllRoles')->name('all.roles');
 
         Route::get('/add/roles', 'AddRoles')->name('add.roles');
@@ -109,12 +107,9 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
         Route::post('/update/roles', 'updateRoles')->name('update.roles');
 
-        // Export route
-        Route::get('/export/roles', 'exportRoles')->name('export.roles');
+        // add role permistion 
 
-        // Import route
-        Route::get('/import/roles', 'importRolesView')->name('import.roles.view');
-        Route::post('/import/roles', 'importRoles')->name('import.roles');
+        Route::get('/add/roles/permission', 'AddRolesPermission')->name('add.roles.permission');
     });
 });
 
