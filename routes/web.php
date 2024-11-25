@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\Backend\PropertyTypeController;
 use App\Http\Controllers\UserController;
 use App\Models\PropertyType;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -67,11 +69,9 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::get('/delete/type/{id}','deleteType')->name('delete.type');
         Route::post('/update/type','updateType')->name('update.type');
     });
-});
-    
-//Amenity
-Route::middleware('auth','role:admin')->group(function () {
-   
+
+    //Amenities all Route
+
     Route::controller(PropertyTypeController::class)->group(function(){
         Route::get('/all/amenities','AllAmenities')->name('all.amenities');
         Route::get('/add/amenities','AddAmenities')->name('add.amenities');
@@ -80,6 +80,21 @@ Route::middleware('auth','role:admin')->group(function () {
         Route::get('/delete/amenities/{id}','deleteAmenities')->name('delete.amenities');
         Route::post('/update/amenities','updateAmenities')->name('update.amenities');
     });
+
+    // All Permission Route
+
+    Route::controller(RoleController::class)->group(function(){
+        Route::get('/all/permission','AllPermission')->name('all.permission');
+        
+        Route::get('/add/permission','AddPermission')->name('add.permission');
+        Route::post('/store/permission','storePermission')->name('store.permission');
+        Route::get('/edit/permission/{id}','editPermission')->name('edit.permission');
+        Route::get('/delete/permission/{id}','DeletePermission')->name('delete.permission');
+        Route::post('/update/permission','updatePermission')->name('update.permission');
+    });
+
 });
+
+
 
 // Route::get('/user/dashboard', [UserController::class, 'UserDashboard'])->name('user.dashboard');
