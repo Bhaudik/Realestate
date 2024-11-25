@@ -110,8 +110,10 @@ Route::middleware('auth', 'role:admin')->group(function () {
         // add role permistion 
 
         Route::get('/add/roles/permission', 'AddRolesPermission')->name('add.roles.permission');
-        Route::post('/rope/permission/store', 'RolePermissionStore')->name('roles.permission.store');
+        Route::post('/role/permission/store', 'RolePermissionStore')->name('roles.permission.store');
         Route::get('all/role/permission', 'allRolePermission')->name('all.role.permission');
+        Route::get('admin/role/edit/{id}', 'AdminEditRole')->name('admin.edit.permission');
+        Route::post('admin/role/updates/{id}', 'AdminRolesUpdates')->name('admin.roles.updates');
     });
 });
 
