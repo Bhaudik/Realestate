@@ -121,7 +121,7 @@
                     <span class="link-title">Role & Permission</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="Permission">
+                <div class="collapse" id="advancedUI">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="{{route('all.permission')}}" class="nav-link">Role & Permission</a>
@@ -133,7 +133,27 @@
                     </ul>
                 </div>
             </li>
+{{-- roles --}}
+  <li class="nav-item nav-category">Roles</li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#Roles" role="button" aria-expanded="false"
+                    aria-controls="advancedUI">
+                    <i class="link-icon" data-feather="anchor"></i>
+                    <span class="link-title">Roles</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="Roles">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{route('all.roles')}}" class="nav-link">Role & Roles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
+                        </li>
 
+                    </ul>
+                </div>
+            </li>
 
 
             <li class="nav-item nav-category">Docs</li>

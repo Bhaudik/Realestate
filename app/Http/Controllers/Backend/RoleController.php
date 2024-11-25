@@ -103,4 +103,79 @@ class RoleController extends Controller
     {
         return Excel::download(new PermissionExport, 'permissions.csv', \Maatwebsite\Excel\Excel::CSV);
     }
+
+
+    /**
+     * /All Role Funcrion 
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function AllRoles()
+    {
+        $roles = Role::all();
+
+        return view('backend.pages.roles.all_roles', compact('roles'));
+    }
+
+    public function AddRoles(Request $request)
+    {
+        return view('backend.pages.roles.add_roles');
+    }
+
+    public function storeRoles(Request $request)
+    {
+        // Validation (only name required)
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Storing Role
+        Role::create([
+            'name' => $request->name,
+        ]);
+
+        $notification = array(
+            'message' => 'Role Created Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.roles')->with($notification);
+    }
+
+    public function EditRoles($id)
+    {
+        $roles = Role::find($id);
+        return view('backend.pages.roles.edit_roles', compact('roles'));
+    }
+
+    public function updateRoles(Request $request)
+    {
+        $roleId = $request->id;
+
+        // Validation (only name required)
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Update Role
+        Role::findOrFail($roleId)->update([
+            'name' => $request->name,
+        ]);
+
+        $notification = array(
+            'message' => 'Role Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.roles')->with($notification);
+    }
+
+    public function DeleteRoles($id)
+    {
+        Role::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Role Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    }
 }

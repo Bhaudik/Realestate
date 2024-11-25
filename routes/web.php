@@ -36,71 +36,86 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 // admin group midlleware
-Route::middleware('auth','role:admin')->group(function () {
+Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
-
-
 });
 
 // admin group midlleware
 
-Route::middleware('auth','role:agent')->group(function () {
+Route::middleware('auth', 'role:agent')->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
 });
 
-  Route::get('admin/login', [AdminController::class, 'AdminLogin'])
-                ->name('admin.login');
+Route::get('admin/login', [AdminController::class, 'AdminLogin'])
+    ->name('admin.login');
 
 //property all route
-Route::middleware('auth','role:admin')->group(function () {
-    Route::controller(PropertyTypeController::class)->group(function(){
-        Route::get('/all/type','AllType')->name('all.type');
-        Route::get('/add/type','AddType')->name('add.type');
-        Route::post('/store/type','storeType')->name('store.type');
-        Route::get('/edit/type/{id}','editType')->name('edit.type');
-        Route::get('/delete/type/{id}','deleteType')->name('delete.type');
-        Route::post('/update/type','updateType')->name('update.type');
+Route::middleware('auth', 'role:admin')->group(function () {
+    Route::controller(PropertyTypeController::class)->group(function () {
+        Route::get('/all/type', 'AllType')->name('all.type');
+        Route::get('/add/type', 'AddType')->name('add.type');
+        Route::post('/store/type', 'storeType')->name('store.type');
+        Route::get('/edit/type/{id}', 'editType')->name('edit.type');
+        Route::get('/delete/type/{id}', 'deleteType')->name('delete.type');
+        Route::post('/update/type', 'updateType')->name('update.type');
     });
 
     //Amenities all Route
 
-    Route::controller(PropertyTypeController::class)->group(function(){
-        Route::get('/all/amenities','AllAmenities')->name('all.amenities');
-        Route::get('/add/amenities','AddAmenities')->name('add.amenities');
-        Route::post('/store/amenities','storeAmenities')->name('store.amenities');
-        Route::get('/edit/amenities/{id}','editAmenities')->name('edit.amenities');
-        Route::get('/delete/amenities/{id}','deleteAmenities')->name('delete.amenities');
-        Route::post('/update/amenities','updateAmenities')->name('update.amenities');
+    Route::controller(PropertyTypeController::class)->group(function () {
+        Route::get('/all/amenities', 'AllAmenities')->name('all.amenities');
+        Route::get('/add/amenities', 'AddAmenities')->name('add.amenities');
+        Route::post('/store/amenities', 'storeAmenities')->name('store.amenities');
+        Route::get('/edit/amenities/{id}', 'editAmenities')->name('edit.amenities');
+        Route::get('/delete/amenities/{id}', 'deleteAmenities')->name('delete.amenities');
+        Route::post('/update/amenities', 'updateAmenities')->name('update.amenities');
     });
 
     // All Permission Route
 
-    Route::controller(RoleController::class)->group(function(){
-        Route::get('/all/permission','AllPermission')->name('all.permission');
-        
-        Route::get('/add/permission','AddPermission')->name('add.permission');
-        Route::post('/store/permission','storePermission')->name('store.permission');
-        Route::get('/edit/permission/{id}','editPermission')->name('edit.permission');
-        Route::get('/delete/permission/{id}','DeletePermission')->name('delete.permission');
-        Route::post('/update/permission','updatePermission')->name('update.permission');
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/all/permission', 'AllPermission')->name('all.permission');
 
-          // Export route
+        Route::get('/add/permission', 'AddPermission')->name('add.permission');
+        Route::post('/store/permission', 'storePermission')->name('store.permission');
+        Route::get('/edit/permission/{id}', 'editPermission')->name('edit.permission');
+        Route::get('/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
+        Route::post('/update/permission', 'updatePermission')->name('update.permission');
+
+        // Export route
         Route::get('/export/permissions', 'exportPermissions')->name('export.permissions');
-        
+
         // Import route
         Route::get('/import/permissions', 'importPermissionsView')->name('import.permissions.view');
         Route::post('/import/permissions', 'importPermissions')->name('import.permissions');
-
     });
 
+    // All ROles Route
+
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/all/roles', 'AllRoles')->name('all.roles');
+
+        Route::get('/add/roles', 'AddRoles')->name('add.roles');
+        Route::post('/store/roles', 'storeRoles')->name('store.roles');
+        Route::get('/edit/roles/{id}', 'editRoles')->name('edit.roles');
+        Route::get('/delete/roles/{id}', 'DeleteRoles')->name('delete.roles');
+        Route::post('/update/roles', 'updateRoles')->name('update.roles');
+
+        // Export route
+        Route::get('/export/roles', 'exportRoles')->name('export.roles');
+
+        // Import route
+        Route::get('/import/roles', 'importRolesView')->name('import.roles.view');
+        Route::post('/import/roles', 'importRoles')->name('import.roles');
+    });
 });
 
 
