@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 // use Illuminate\Support\Facades\DB;
 use DB;
 
@@ -246,7 +247,7 @@ class RoleController extends Controller
     //         'message' => 'Role Premission Updeted Successfully',
     //         'alter-type' => 'success'
     //     );
-    //     return redirect()->route('all.role.permission')->with($notification);
+    //     return redirect()->route('all.roles.permission')->with($notification);
     // }
 
     public function AdminRolesUpdates(Request $request, $id)
@@ -255,7 +256,7 @@ class RoleController extends Controller
         $roles = Role::findOrFail($id);
 
         // Extract and validate permissions from the request
-        $permissions = $request->permissions;
+        $permissions = $request->permission;
 
         if (!empty($permissions)) {
             // Ensure permissions are valid names
@@ -272,6 +273,6 @@ class RoleController extends Controller
         ];
 
         // Redirect back to the roles page
-        return redirect()->route('all.role.permission')->with($notification);
+        return redirect()->route('all.roles.permission')->with($notification);
     }
 }
