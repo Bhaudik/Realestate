@@ -30,8 +30,16 @@ class AdminController extends Controller
 
     public function AdminLogin()
     {
+        // Check if the user is already logged in
+        if (auth()->check()) {
+            // Redirect to the dashboard if the user is logged in
+            return redirect()->route('admin.dashboard');
+        }
+
+        // Show the login view if the user is not logged in
         return view('admin.admin_login');
     }
+
     public function AdminProfile()
     {
         $id  = Auth::user()->id;
