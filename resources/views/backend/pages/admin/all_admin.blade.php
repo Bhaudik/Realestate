@@ -41,14 +41,18 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td><img class="wd-100 rounded-circle"
-                                                    src="{{ !empty($adminUser->item) ? url('upload/admin_image/' . $adminUser->photo) : url('upload/no_image.jpg') }}"
+                                                    src="{{ !empty($item->photo) ? url('upload/admin_image/' . $item->photo) : url('upload/no_image.jpg') }}"
                                                     alt="profile"></td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->phone }}</td>
-                                            <td>role</td>
                                             <td>
-                                                <a href="{{ route('edit.permission', $item->id) }}"
+                                                @foreach ($item->roles as $role)
+                                                    <span class="badge badge-pill bg-danger">{{ $role->name }}</span>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('edit.admin', $item->id) }}"
                                                     class="btn btn-inverse-warning">Edit</a>
                                                 <a href="{{ route('delete.permission', $item->id) }}"
                                                     class="btn btn-inverse-danger">Delete</a>

@@ -13,6 +13,7 @@ use Spatie\Permission\Models\Permission;
 
 // use Illuminate\Support\Facades\DB;
 use DB;
+use Illuminate\Support\Facades\Hash;
 
 class RoleController extends Controller
 {
@@ -297,5 +298,98 @@ class RoleController extends Controller
         $roles = Role::all();
 
         return view('backend.pages.admin.add_admin', compact('roles'));
+    }
+
+    //add addmin
+
+    public function storeAdmin(Request $request)
+    {
+        // Validate and process the form data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users,username',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+            'roles' => 'required|exists:roles,id', // Validate that the role exists in the roles table
+        ]);
+
+        // Save the user
+        $user = new User();
+        $user->name = $validatedData['name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->password = Hash::make($validatedData['password']);
+        $user->phone = $validatedData['phone'] ?? null;
+        $user->address = $validatedData['address'] ?? null;
+        $user->role = 'admin'; // Default role assignment
+        $user->status = 'active';
+        $user->save();
+
+        // Assign role to the user
+        if ($request->roles) {
+            $role = Role::find($request->roles); // Retrieve the role by ID
+            if ($role) {
+                $user->assignRole($role->name); // Assign the role by name
+            } else {
+                return redirect()->back()->withErrors(['roles' => 'The selected role is invalid.']);
+            }
+        }
+
+        // Notification
+        $notification = [
+            'message' => 'New Admin added successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('all.admin')->with($notification);
+    }
+
+    public function editAdmin($id)
+    {
+        $user = User::find($id);
+        $roles  = Role::all();
+
+        return view('backend.pages.admin.edit_admin', compact('user', 'roles'));
+    }
+    public function updateAdmin(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'nullable|string|max:15',
+            'address' => 'nullable|string|max:255',
+            'roles' => 'required|exists:roles,id', // Validate that the role exists in the roles table
+        ]);
+        $user->name = $validatedData['name'];
+        $user->username = $validatedData['username'];
+        $user->email = $validatedData['email'];
+        $user->phone = $validatedData['phone'] ?? null;
+        $user->address = $validatedData['address'] ?? null;
+        $user->role = 'admin'; // Default role assignment
+        $user->status = 'active';
+        $user->save();
+
+        $user->roles()->detach();
+        if ($request->roles) {
+            $role = Role::find($request->roles); // Retrieve the role by ID
+            if ($role) {
+                $user->assignRole($role->name); // Assign the role by name
+            } else {
+                return redirect()->back()->withErrors(['roles' => 'The selected role is invalid.']);
+            }
+        }
+
+        // Notification
+        $notification = [
+            'message' => 'Admin Updated successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('all.admin')->with($notification);
     }
 }

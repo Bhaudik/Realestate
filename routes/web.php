@@ -116,8 +116,11 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('admin/role/updates/{id}', 'AdminRolesUpdates')->name('admin.roles.updates');
         Route::get('admin/role/delete/{id}', 'AdminRolesDelete')->name('admin.roles.delete');
 
-        //all admin
+        //all admin it's not work in admin conntroller that's why here defilne
         Route::get('add/admin', 'addAdmin')->name('add.admin');
+        Route::post('store/admin', 'storeAdmin')->name('store.admin');
+        Route::get('edit/admin/{id}', 'editAdmin')->name('edit.admin');
+        Route::post('update/admin/{id}', 'updateAdmin')->name('update.admin');
     });
 
     //all admin roued
@@ -125,7 +128,6 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::controller(AdminController::class)->group(function () {
 
         Route::get('all/admin', 'allAdmin')->name('all.admin');
-        Route::post('store/admin', 'storeAdmin')->name('store.admin');
         Route::get('admin/role/delete/{id}', 'AdminRolesDelete')->name('admin.roles.delete');
     });
 });
