@@ -121,6 +121,7 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::post('store/admin', 'storeAdmin')->name('store.admin');
         Route::get('edit/admin/{id}', 'editAdmin')->name('edit.admin');
         Route::post('update/admin/{id}', 'updateAdmin')->name('update.admin');
+        Route::get('admin/delete/{id}', 'AdminDelete')->name('admin.delete');
     });
 
     //all admin roued

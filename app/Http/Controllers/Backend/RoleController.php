@@ -392,4 +392,20 @@ class RoleController extends Controller
 
         return redirect()->route('all.admin')->with($notification);
     }
+
+    public function AdminDelete($id)
+    {
+
+        $user = User::findOrFail($id);
+        if (!is_null($user)) {
+            $user->delete();
+        }
+
+        $notification = [
+            'message' => 'User Deleted Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->back()->with($notification);
+    }
 }
