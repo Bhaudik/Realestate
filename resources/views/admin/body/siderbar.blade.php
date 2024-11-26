@@ -158,6 +158,30 @@
                     </ul>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#Roles" role="button" aria-expanded="false"
+                    aria-controls="advancedUI">
+                    <i class="link-icon" data-feather="anchor"></i>
+                    <span class="link-title">Manage Admin User</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="Roles">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('all.admin') }}" class="nav-link">All Addmin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('add.roles.permission') }}" class="nav-link">Role in Permission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('all.roles.permission') }}" class="nav-link">All Roles Pesmission</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </li>
+
 
 
             <li class="nav-item nav-category">Docs</li>

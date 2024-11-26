@@ -115,6 +115,18 @@ Route::middleware('auth', 'role:admin')->group(function () {
         Route::get('admin/role/edit/{id}', 'AdminEditRole')->name('admin.edit.permission');
         Route::post('admin/role/updates/{id}', 'AdminRolesUpdates')->name('admin.roles.updates');
         Route::get('admin/role/delete/{id}', 'AdminRolesDelete')->name('admin.roles.delete');
+
+        //all admin
+        Route::get('add/admin', 'addAdmin')->name('add.admin');
+    });
+
+    //all admin roued
+
+    Route::controller(AdminController::class)->group(function () {
+
+        Route::get('all/admin', 'allAdmin')->name('all.admin');
+        Route::post('store/admin', 'storeAdmin')->name('store.admin');
+        Route::get('admin/role/delete/{id}', 'AdminRolesDelete')->name('admin.roles.delete');
     });
 });
 

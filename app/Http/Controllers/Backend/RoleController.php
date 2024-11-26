@@ -291,4 +291,11 @@ class RoleController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function addAdmin()
+    {
+        $roles = Role::all();
+
+        return view('backend.pages.admin.add_admin', compact('roles'));
+    }
 }

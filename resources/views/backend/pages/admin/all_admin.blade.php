@@ -6,7 +6,7 @@
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
                 <a href="{{ route('add.admin') }}" class="btn btn-inverse-info" rel="noopener noreferrer">Add
-                    Permission</a>
+                    Admin</a>
                 <!-- Export Button -->
                 &nbsp;
                 <a href="{{ route('export.permissions') }}" class="btn btn-inverse-success"
@@ -22,23 +22,31 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title">Permission All</h6>
+                        <h6 class="card-title">All Admin</h6>
                         <div class="table-responsive">
                             <table id="dataTableExample" class="table">
                                 <thead>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Permission name</th>
-                                        <th>Group name</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($permission as $key => $item)
+                                    @foreach ($alladmin as $key => $item)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
+                                            <td><img class="wd-100 rounded-circle"
+                                                    src="{{ !empty($adminUser->item) ? url('upload/admin_image/' . $adminUser->photo) : url('upload/no_image.jpg') }}"
+                                                    alt="profile"></td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->group_name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->phone }}</td>
+                                            <td>role</td>
                                             <td>
                                                 <a href="{{ route('edit.permission', $item->id) }}"
                                                     class="btn btn-inverse-warning">Edit</a>
