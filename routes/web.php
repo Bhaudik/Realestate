@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 // admin group midlleware
-Route::middleware('auth', 'role:admin')->group(function () {
+Route::middleware('auth', 'roles:admin')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
     Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
@@ -50,7 +50,7 @@ Route::middleware('auth', 'role:admin')->group(function () {
 
 // admin group midlleware
 
-Route::middleware('auth', 'role:agent')->group(function () {
+Route::middleware('auth', 'roles:agent')->group(function () {
     Route::get('/agent/dashboard', [AgentController::class, 'AgentDashboard'])->name('agent.dashboard');
 });
 
@@ -58,12 +58,12 @@ Route::get('admin/login', [AdminController::class, 'AdminLogin'])
     ->name('admin.login');
 
 //property all route
-Route::middleware('auth', 'role:admin')->group(function () {
+Route::middleware('auth', 'roles:admin')->group(function () {
     Route::controller(PropertyTypeController::class)->group(function () {
-        Route::get('/all/type', 'AllType')->name('all.type');
-        Route::get('/add/type', 'AddType')->name('add.type');
-        Route::post('/store/type', 'storeType')->name('store.type');
-        Route::get('/edit/type/{id}', 'editType')->name('edit.type');
+        Route::get('/all/type', 'AllType')->name('all.type')->middleware('permission:type.menu');
+        Route::get('/add/type', 'AddType')->name('add.type')->middleware('permission:type.add');
+        Route::post('/store/type', 'storeType')->name('store.type')->middleware('permission:type.menu');
+        Route::get('/edit/type/{id}', 'editType')->name('edit.type')->middleware('permission:edit.type');
         Route::get('/delete/type/{id}', 'deleteType')->name('delete.type');
         Route::post('/update/type', 'updateType')->name('update.type');
     });

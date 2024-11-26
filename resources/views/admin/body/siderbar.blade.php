@@ -43,41 +43,33 @@
                     </div>
                 </li>
             @endif
+            @if (Auth::user()->can('amenities-meno'))
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#amenities" role="button" aria-expanded="false"
+                        aria-controls="emails">
+                        <i class="link-icon" data-feather="mail"></i>
+                        <span class="link-title">Amenities</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="amenities">
+                        <ul class="nav sub-menu">
+                            @if (Auth::user()->can('all-amenities'))
+                                <li class="nav-item">
+                                    <a href="{{ route('all.amenities') }}" class="nav-link">All Amenities</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->can('add-amenities'))
+                                <li class="nav-item">
+                                    <a href="pages/email/read.html" class="nav-link">Add Amenities</a>
+                                </li>
+                            @endif
 
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#amenities" role="button" aria-expanded="false"
-                    aria-controls="emails">
-                    <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Amenities</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="amenities">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('all.amenities') }}" class="nav-link">All Amenities</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Add Amenities</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/email/compose.html" class="nav-link">Compose</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a href="pages/apps/chat.html" class="nav-link">
-                    <i class="link-icon" data-feather="message-square"></i>
-                    <span class="link-title">Chat</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="pages/apps/calendar.html" class="nav-link">
-                    <i class="link-icon" data-feather="calendar"></i>
-                    <span class="link-title">Calendar</span>
-                </a>
-            </li>
-            <li class="nav-item nav-category">Components</li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
+
+            {{-- <li class="nav-item nav-category">Components</li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#uiComponents" role="button" aria-expanded="false"
                     aria-controls="uiComponents">
@@ -115,12 +107,12 @@
 
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
             <li class="nav-item nav-category">Role & Permission</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#Permission" role="button"
-                    aria-expanded="false" aria-controls="advancedUI">
+                <a class="nav-link" data-bs-toggle="collapse" href="#Permission" role="button" aria-expanded="false"
+                    aria-controls="advancedUI">
                     <i class="link-icon" data-feather="anchor"></i>
                     <span class="link-title">Role & Permission</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
@@ -130,10 +122,6 @@
                         <li class="nav-item">
                             <a href="{{ route('all.permission') }}" class="nav-link">Role & Permission</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="pages/advanced-ui/owl-carousel.html" class="nav-link">Owl carousel</a>
-                        </li>
-
                     </ul>
                 </div>
             </li>
@@ -158,8 +146,6 @@
                             <a href="{{ route('all.roles.permission') }}" class="nav-link">All Roles
                                 Pesmission</a>
                         </li>
-
-
                     </ul>
                 </div>
             </li>
