@@ -265,7 +265,10 @@ class RoleController extends Controller
 
             // Sync permissions with the role
             $roles->syncPermissions($permissionNames);
+        } else {
+            $roles->syncPermissions([]);
         }
+
 
         // Create a success notification
         $notification = [

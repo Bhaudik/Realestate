@@ -19,27 +19,31 @@
                 </a>
             </li>
             <li class="nav-item nav-category">RealEstate</li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#Property" role="button" aria-expanded="false"
-                    aria-controls="emails">
-                    <i class="link-icon" data-feather="mail"></i>
-                    <span class="link-title">Property Type</span>
-                    <i class="link-arrow" data-feather="chevron-down"></i>
-                </a>
-                <div class="collapse" id="Property">
-                    <ul class="nav sub-menu">
-                        <li class="nav-item">
-                            <a href="{{ route('all.type') }}" class="nav-link">All Type</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/email/read.html" class="nav-link">Add Type</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/email/compose.html" class="nav-link">Compose</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+            @if (Auth::user()->can('type.menu'))
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#Property" role="button" aria-expanded="false"
+                        aria-controls="emails">
+                        <i class="link-icon" data-feather="mail"></i>
+                        <span class="link-title">Property Type</span>
+                        <i class="link-arrow" data-feather="chevron-down"></i>
+                    </a>
+                    <div class="collapse" id="Property">
+                        <ul class="nav sub-menu">
+                            @if (Auth::user()->can('type.menu'))
+                                <li class="nav-item">
+                                    <a href="{{ route('all.type') }}" class="nav-link">All Type</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->can('add.typer'))
+                                <li class="nav-item">
+                                    <a href="{{ route('add.type') }}" class="nav-link">Add Type</a>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+            @endif
+
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#amenities" role="button" aria-expanded="false"
                     aria-controls="emails">
@@ -151,7 +155,8 @@
                             <a href="{{ route('add.roles.permission') }}" class="nav-link">Role in Permission</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('all.roles.permission') }}" class="nav-link">All Roles Pesmission</a>
+                            <a href="{{ route('all.roles.permission') }}" class="nav-link">All Roles
+                                Pesmission</a>
                         </li>
 
 
@@ -159,13 +164,13 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#Roles" role="button" aria-expanded="false"
-                    aria-controls="advancedUI">
+                <a class="nav-link" data-bs-toggle="collapse" href="#Rolesadmin" role="button"
+                    aria-expanded="false" aria-controls="advancedUI">
                     <i class="link-icon" data-feather="anchor"></i>
                     <span class="link-title">Manage Admin User</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
                 </a>
-                <div class="collapse" id="Roles">
+                <div class="collapse" id="Rolesadmin">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
                             <a href="{{ route('all.admin') }}" class="nav-link">All Addmin</a>
@@ -174,7 +179,8 @@
                             <a href="{{ route('add.roles.permission') }}" class="nav-link">Role in Permission</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('all.roles.permission') }}" class="nav-link">All Roles Pesmission</a>
+                            <a href="{{ route('all.roles.permission') }}" class="nav-link">All Roles
+                                Pesmission</a>
                         </li>
 
 

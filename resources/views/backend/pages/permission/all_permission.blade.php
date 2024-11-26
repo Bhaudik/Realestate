@@ -5,7 +5,7 @@
     <div class="page-content">
         <nav class="page-breadcrumb">
             <ol class="breadcrumb">
-                <a href="{{ route('add.admin') }}" class="btn btn-inverse-info" rel="noopener noreferrer">Add
+                <a href="{{ route('add.permission') }}" class="btn btn-inverse-info" rel="noopener noreferrer">Add
                     Permission</a>
                 <!-- Export Button -->
                 &nbsp;
