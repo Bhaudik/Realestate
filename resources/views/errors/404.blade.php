@@ -59,7 +59,8 @@ License: For each use you must have a valid license purchased only from above li
                         <h4 class="mb-2">Page Not Found</h4>
                         <h6 class="text-muted mb-3 text-center">Oopps!! The page you were looking for doesn't exist.
                         </h6>
-                        <a href="../../dashboard.html">Back to home</a>
+                        <a href="{{ route('admin.login') }}">Back to home</a>
+
                     </div>
                 </div>
 

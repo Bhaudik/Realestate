@@ -60,7 +60,7 @@ License: For each use you must have a valid license purchased only from above li
                         <h6 class="text-muted mb-3 text-center">403
                             User does not have the right permissions.
                         </h6>
-                        <a href="../../dashboard.html">Back to home</a>
+                        <a href="{{ route('admin.login') }}">Back to home</a>
                     </div>
                 </div>
 
